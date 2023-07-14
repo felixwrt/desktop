@@ -77,3 +77,8 @@ jobs:
           
           runTestsAndCreateCoverage
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-msvc2019_64-cl
+          path: D:/a/desktop/desktop/windows-msvc2019_64-cl
