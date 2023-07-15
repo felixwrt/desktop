@@ -64,13 +64,14 @@ jobs:
       - name: Info
         shell: pwsh
         run: |
-          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a/desktop/desktop/windows-msvc2019_64-cl
-          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a/desktop/desktop
-          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a/desktop
-          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a
-          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master
-          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client
           dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a/desktop
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a/desktop/desktop
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master/a/desktop/desktop/windows-msvc2019_64-cl
+          
       
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
