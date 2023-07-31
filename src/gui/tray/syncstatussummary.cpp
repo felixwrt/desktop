@@ -21,8 +21,11 @@
 #include "tray/usermodel.h"
 
 #include <theme.h>
+#include <iostream>
 
 namespace {
+
+static long long COUNTER = 0;
 
 OCC::SyncResult::Status determineSyncStatus(const OCC::SyncResult &syncResult)
 {
@@ -132,6 +135,7 @@ void SyncStatusSummary::setSyncStateForFolder(const Folder *folder)
     switch (state) {
     case SyncResult::Success:
     case SyncResult::SyncPrepare:
+        std::cout << "DONE. Counter: " << COUNTER << std::endl;
         // Success should only be shown if all folders were fine
         if (!folderErrors() || folderError(folder)) {
             setSyncing(false);
@@ -151,7 +155,8 @@ void SyncStatusSummary::setSyncStateForFolder(const Folder *folder)
         break;
     case SyncResult::SyncRunning:
     case SyncResult::NotYetStarted:
-        setSyncing(true);
+        std::cout << "SYNCING. Counter: " << COUNTER << std::endl;
+        setSyncing(true); 
         setSyncStatusString(tr("Syncing"));
         setSyncStatusDetailString("");
         setSyncIcon(Theme::instance()->syncStatusRunning());
@@ -200,7 +205,12 @@ constexpr double calculateOverallPercent(
 }
 
 void SyncStatusSummary::onFolderProgressInfo(const ProgressInfo &progress)
-{
+{   
+    if (COUNTER % 10 == 0) {
+        std::cout << "Progress: " << COUNTER << std::endl;
+    }
+    COUNTER = COUNTER + 1;
+    
     const qint64 completedSize = progress.completedSize();
     const qint64 currentFile = progress.currentFile();
     const qint64 completedFile = progress.completedFiles();
