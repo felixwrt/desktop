@@ -64,7 +64,19 @@ jobs:
           }
           
           craft --src-dir ${{ github.workspace }} nextcloud-client
-          
+      - name: Info
+        shell: pwsh
+        run: |
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client
+          dir D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master
+      
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-msvc2019_64-cl
+          path: D:/a/desktop/desktop/windows-msvc2019_64-cl/build/nextcloud-client/image-RelWithDebInfo-master
+
       - name: Run tests
         shell: pwsh
         run: |
@@ -79,10 +91,3 @@ jobs:
           }
           
           runTestsAndCreateCoverage
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ${{ github.workspace }}\cobertura_coverage
-          fail_ci_if_error: true
